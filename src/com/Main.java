@@ -53,7 +53,7 @@ public class Main {
         while (inFile.hasNextLine()) {
             line = inFile.nextLine();
             System.out.println(line);
-            String[] a = line.split(" ");
+            String[] a = line.split(" ");   
             stdFirstName = a[0];
             stdLastName = a[1];
             stdID = a[2];
