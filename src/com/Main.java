@@ -5,8 +5,12 @@
  */
 package com;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Scanner;
 
 /**
  *
@@ -14,21 +18,58 @@ import java.util.Comparator;
  */
 public class Main {
 
-    public static void main(String[] args) { 
+    public static void main(String[] args) throws FileNotFoundException {
 
-        Course c1 = new Course("MATH", "MATH4332", 3, 'A');
-        Course c2 = new Course("PHYS", "PYSH4332", 3, 'A');
-        Course c3 = new Course("CHEM", "CHEM4332", 3, 'A');
-        Course c4 = new Course("SHAR", "SHAR5332", 3, 'A');
+        int noOfStudents;
+        double tuitionRate;
 
-        Student s = new Student();
-        s.setCoursesEnrolled(new Course[]{c1, c2, c3, c4});
-        s.setNumberOfCourses(4);
-        s.sortCourses();
+        Scanner inFile = new Scanner(new FileReader("inFile.txt"));
 
-        for (Course c : s.getCoursesEnrolled()) {
-            System.out.println(c.getCourseNo());
+        PrintWriter outFile = new PrintWriter("sDataOut.out");
+
+        noOfStudents = inFile.nextInt(); //get the number of students
+        tuitionRate = inFile.nextDouble(); //get the tuition rate
+        Student[] studentList = new Student[noOfStudents];
+        System.out.println(noOfStudents + "    " + tuitionRate);
+        for (int i = 0; i < studentList.length; i++) {
+            studentList[i] = new Student();
         }
+
+        getStudentData(inFile, studentList);
+        printGradeReports(outFile, studentList, tuitionRate);
+        inFile.close();
+        outFile.close();
+
+    }
+
+    private static void getStudentData(Scanner inFile, Student[] studentList) {
+        String line = "";
+        String stdFirstName;
+        String stdLastName;
+        String stdID;
+        char isTuit;
+        int courseCount;
+        line = inFile.nextLine();
+        while (inFile.hasNextLine()) {
+            line = inFile.nextLine();
+            System.out.println(line);
+            String[] a = line.split(" ");
+            stdFirstName = a[0];
+            stdLastName = a[1];
+            stdID = a[2];
+            isTuit = a[3].charAt(0);
+            courseCount = Integer.parseInt(a[4]);
+            for (int i = 0; i < courseCount; i++) {
+                line = inFile.nextLine();
+                System.out.println(line);
+            }
+            System.out.println("-----------------");
+        }
+
+    }
+
+    private static void printGradeReports(PrintWriter outFile, Student[] studentList, double tuitionRate) {
+
     }
 
 }

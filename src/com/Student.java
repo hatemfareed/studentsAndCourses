@@ -111,7 +111,11 @@ public class Student extends Person {
     }
 
     public double billingAmount(double hourPrice) {
-        return 33;  // TODO : calculate billing amount
+        int sum =0 ;
+        for (int i=0;i<numberOfCourses;i++){
+          sum +=  this.coursesEnrolled[i].courseCredits ;
+        }
+        return sum*hourPrice ;
     }
 
     public void sortCourses() {
