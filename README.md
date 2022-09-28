@@ -1,3 +1,3 @@
 # studentsAndCourses
 
-oop project by java
+oop project in java
